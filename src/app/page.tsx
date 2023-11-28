@@ -15,7 +15,7 @@ function Lars() {
 }
 
 function Anj() {
-  return <div>Hr. Jensen er awsome. Nyt batteri tak!!!</div>
+  return <div>Hr. Jensen er awsome. Nyt batteri tak!!! Vi prøver lykken med et nuke batteri</div>
 }
 
 export default function Home() {
