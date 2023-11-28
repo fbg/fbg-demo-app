@@ -1,19 +1,26 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Headline from "./components/Headline";
 import * as Icons from "./icons/Icons";
 
-
-function Niko() {
-  const [isVisible, setIsVisible] = useState(false);
-
+function Niko({
+  id,
+  toggleVisibility,
+  isVisible,
+}: {
+  id: number;
+  toggleVisibility: (id: number) => void;
+  isVisible: boolean;
+}) {
   return (
     <div className="flex flex-col items-center gap-[11px] text-red-500 m-5 p-3 border-blue-300 border rounded-sm shadow-sm">
-      <h1 className="text-xl sm:text-2xl md:text-3xl font-bold">Welcome to this App</h1>
-      <button 
-        className="bg-gray-100 py-1 px-5 rounded shadow" 
-        onClick={() => setIsVisible(!isVisible)}
+      <h1 className="text-xl sm:text-2xl md:text-3xl font-bold">
+        Welcome to this App
+      </h1>
+      <button
+        className="bg-gray-100 py-1 px-5 rounded shadow"
+        onClick={() => toggleVisibility(id)}
       >
         Toggle
       </button>
@@ -36,19 +43,32 @@ function Anj() {
 }
 
 export default function Home() {
+  const [visibleNikoId, setVisibleNikoId] = useState<number | null>(null);
+
+  const toggleVisibility = (id: number) => {
+    if (visibleNikoId === id) {
+      setVisibleNikoId(null);
+    } else {
+      setVisibleNikoId(id);
+    }
+  };
+
+  const nikos = [...Array(7)];
+
   return (
     <main className="flex min-h-screen flex-col items-center p-24">
       <Headline>Hejsa</Headline>
 
       <Icons.Star color="orange" />
 
-      <Niko />
-      <Niko />
-      <Niko />
-      <Niko />
-      <Niko />
-      <Niko />
-      <Niko />
+      {nikos.map((_, index) => (
+        <Niko
+          key={index}
+          id={index}
+          toggleVisibility={toggleVisibility}
+          isVisible={visibleNikoId === index}
+        />
+      ))}
 
       <Thomas />
       <Lars />
