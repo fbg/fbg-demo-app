@@ -30,6 +30,10 @@ function Niko({
   );
 }
 
+function Rasmus() {
+  return <div className="text-niko">Rasmus</div>
+}
+
 function Thomas() {
   return <div>Thomas</div>;
 }
@@ -39,7 +43,7 @@ function Lars() {
 }
 
 function Anj() {
-  return <div>Hr. Jensen er awsome. Nyt batteri tak!!!</div>;
+  return <div>Hr. Jensen er awsome. Nyt batteri tak!!! Vi prøver lykken med et nuke batteri</div>;
 }
 
 export default function Home() {
@@ -57,6 +61,9 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center p-24">
+      Hej FBG.
+      <Rasmus />
+
       <Headline>Hejsa</Headline>
 
       <Icons.Star color="orange" />
