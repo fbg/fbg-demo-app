@@ -70,7 +70,9 @@ export default function Home() {
       <Anj />
       <Rasmus />
 
-      <ul className="mt-12">
+      
+
+      <ul className="mt-12 border-gray-500 border p-12">
         <li>Navn</li>
         <li>Navn</li>
         <li>Navn</li>
