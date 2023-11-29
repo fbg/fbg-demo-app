@@ -62,26 +62,20 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center p-24">
       Hej FBG.
-      <Rasmus />
 
       <Headline>Hejsa</Headline>
-
-      <Icons.Star color="orange" />
-
-      {nikos.map((_, index) => (
-        <Niko
-          key={index}
-          id={index}
-          toggleVisibility={toggleVisibility}
-          isVisible={visibleNikoId === index}
-        />
-      ))}
 
       <Thomas />
       <Lars />
       <Anj />
+      <Rasmus />
 
-      <p>Hejsa</p>
+      <ul className="mt-12">
+        <li>Navn</li>
+        <li>Navn</li>
+        <li>Navn</li>
+        <li>Navn</li>
+      </ul>
     </main>
   );
 }
