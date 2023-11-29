@@ -30,7 +30,7 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center p-24">
 
-      <Link href='/lars'>Larssside</Link>
+      <Link href='/lars'>Larses side</Link>
 
       {personer.map((p, index) => {
         return <Person 
