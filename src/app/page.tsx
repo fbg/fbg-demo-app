@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import Person from "./components/Person";
 
 export default function Home() {
@@ -28,6 +29,8 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center p-24">
+
+      <Link href='/lars'>Larssside</Link>
 
       {personer.map((p, index) => {
         return <Person 
