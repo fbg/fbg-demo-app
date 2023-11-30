@@ -1,30 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Headline from "./components/Headline";
-import * as Icons from "./icons/Icons";
+import App from './components/App';
 
-function Niko({
-  id,
-  toggleVisibility,
-  isVisible,
-}: {
-  id: number;
-  toggleVisibility: (id: number) => void;
-  isVisible: boolean;
-}) {
-  return (
-    <div className="flex flex-col items-center gap-[11px] text-red-500 m-5 p-3 border-blue-300 border rounded-sm shadow-sm">
-      <h1 className="text-xl sm:text-2xl md:text-3xl font-bold">
-        Welcome to this App
-      </h1>
-      <button
-        className="bg-gray-100 py-1 px-5 rounded shadow"
-        onClick={() => toggleVisibility(id)}
-      >
-        Toggle
-      </button>
 
+<<<<<<< Updated upstream
       {isVisible ? <p>Hello World</p> : null}
     </div>
   );
@@ -81,3 +60,6 @@ export default function Home() {
     </main>
   );
 }
+=======
+export default () => <App />
+>>>>>>> Stashed changes
