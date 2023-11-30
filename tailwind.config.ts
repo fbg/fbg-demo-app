@@ -21,9 +21,6 @@ const config: Config = {
         kjeldsen: '#0000f0',
         lars: '#00000f'
       }
-    },
-    colors: {
-      niko: '#00000a'
     }
   },
   plugins: [],
