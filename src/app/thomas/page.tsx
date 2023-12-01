@@ -46,7 +46,7 @@ export default function Home() {
         })}
 
         {presentPersons.length > 0 ? <ul className="mt-2 border-gray-500 border p-12">
-          {presentPersons.map((p, index) => <li>{p.name}</li>)}
+          {presentPersons.map((p, index) => <li key={index}>{p.name}</li>)}
         </ul> : <div className="border-gray-500 border p-2 mt-10">Der er ingen tilmeldte</div>}
       </div>
     </>
