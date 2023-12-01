@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
 
 export default function Home() {
@@ -15,7 +14,7 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center p-24">
 
-      {personer.map((name, index) => {
+      {personer.map((name) => {
         return (<div className="flex gap-[5px] m-2 p-3 border-black border rounded-sm shadow-sm">
           <Link href={name.toLowerCase()}>{name} playground</Link>
         </div>)
