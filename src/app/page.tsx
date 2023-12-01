@@ -9,6 +9,7 @@ export default function Home() {
     'Thomas',
     'Lars',
     'Rasmus',
+    'Example',
   ]);
 
   return (

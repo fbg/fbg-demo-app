@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import Person from "./../components/Person";
+import Person from "../components/Person";
 
-Home.displayName = "Thomas";
+Home.displayName = "Example";
 
 export default function Home() {
   type person = {
