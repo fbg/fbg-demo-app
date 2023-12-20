@@ -4,8 +4,8 @@ import employeeData from './employeeData';
 
 const App = () => {
   return (
-    <div>
-      <h1>Medarbejdere</h1>
+    <div className="flex flex-1 flex-col items-center justify-center">
+      <h1 className="text-4xl font-bold">Medarbejdere</h1>
       <EmployeeList employees={employeeData} />
     </div>
   );
