@@ -1,34 +1,16 @@
 import React, { useState } from 'react';
+import {AttendanceState, Employee} from "@/app/components/App";
 
 // Define the prop types for the EmployeeList component
-interface EmployeeListProps {
-    employees: Array<{
-    id: number;
-    name: string;
-    position: string;
-    attendanceState: boolean;
-    }>;
+interface Props {
+    employees: Employee[];
+    attendance: AttendanceState;
+    toggleAttendance: (id: number) => void;
 }
 
-const EmployeeList: React.FC<EmployeeListProps> = ({ employees }) => {
-    const useStateDefault: {[key: number]: boolean} = {};
-    employees.map((employee) => {
-        useStateDefault[employee.id] = employee.attendanceState;
-    });
-
-    const [attendance, setAttendance] = useState<{ [key: number]: boolean }>(useStateDefault);
-
-    const toggleAttendance = (id: number) => {
-        setAttendance((prevAttendance) => ({
-            ...prevAttendance,
-            [id]: !prevAttendance[id],
-        }));
-    };
-
+const EmployeeList: React.FC<Props> = ({ employees, attendance, toggleAttendance }) => {
     const totalCount = employees.length;
-  
     const ulPaddingBottomValue = (totalCount - 1) * 20 + 50;
-
     return (
     <div className="flex justify-center items-center">
         <ul className="flex flex-col bg-white border-2 border-black rounded-lg pt-[50px] pl-[50px] pr-[50px] m-12 content-between gap-4" style={{paddingBottom: `${ulPaddingBottomValue}px`}}>
