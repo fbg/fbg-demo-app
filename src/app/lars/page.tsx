@@ -9,7 +9,6 @@ import FormTest from '../components/form-test';
 const Lars: React.FC = () => {
 
     const [isVisible, setIsVisible] = useState(true);
-    const {employees,attendance,toggleAttendance} = useStore();
 
     return (
 

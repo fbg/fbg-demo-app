@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import useStore from '@/store/store';
 
 // Define the prop types for the EmployeeList component

@@ -1,12 +1,6 @@
 import { create } from 'zustand'
 import employeeData from "@/app/components/employeeData";
 
-interface State{
-    employees: Employee[],
-    attendance: AttendanceState,
-    toggleAttendance: (id: number) => void,
-}
-
 interface Employee {
     id: number;
     name: string;
@@ -16,9 +10,23 @@ interface Employee {
 
 type AttendanceState = { [key: number]: boolean };
 
+interface State{
+    employees: Employee[],
+    attendance: AttendanceState,
+    toggleAttendance: (id: number) => void,
+}
+
+const AttendanceDefault = () => {
+    const useStateDefault: {[key: number]: boolean} = {};
+    employeeData.map((employee) => {
+        useStateDefault[employee.id] = employee.attendanceState;
+    });
+    return useStateDefault;
+}
+
 const useStore = create<State>((set) => ({
     employees: employeeData,
-    attendance: {},
+    attendance: AttendanceDefault(),
     toggleAttendance: (id) => set((state) => {
         return {...state, attendance:{
             ...state.attendance,
