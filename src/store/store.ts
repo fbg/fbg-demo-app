@@ -14,6 +14,8 @@ interface State{
     employees: Employee[],
     attendance: AttendanceState,
     toggleAttendance: (id: number) => void,
+    isGrouped: boolean,
+    toggleGrouping: () => void;
 }
 
 const AttendanceDefault = () => {
@@ -28,11 +30,21 @@ const useStore = create<State>((set) => ({
     employees: employeeData,
     attendance: AttendanceDefault(),
     toggleAttendance: (id) => set((state) => {
-        return {...state, attendance:{
-            ...state.attendance,
-            [id]: !state.attendance[id]
-        }} 
-    })
+        return {
+            ...state, 
+            attendance:{
+                ...state.attendance,
+                [id]: !state.attendance[id]
+            }
+        } 
+    }),
+    isGrouped: true,
+    toggleGrouping: () => set((state) => {
+        return {
+            ...state, 
+            isGrouped: !state.isGrouped
+        }
+    }),  
 }))
 
 export default useStore;

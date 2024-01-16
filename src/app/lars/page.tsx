@@ -3,7 +3,6 @@ import React, {useEffect, useState} from 'react';
 
 import Link from "next/link";
 import App from '@/app/components/App';
-import useStore from "@/store/store"
 import FormTest from '../components/form-test';
 
 const Lars: React.FC = () => {
