@@ -1,5 +1,5 @@
 const employeeData = [
-    { id: 1, name: 'Lars Andersen', position: 'Senior Fullstack Developer', attendanceState: false },
+    { id: 1, name: 'Lars Andersen', position: 'Senior Fullstack Developer', attendanceState: true },
     { id: 2, name: 'Thomas Dietz Christensen', position: 'Senior Systems Developer', attendanceState: false },
     { id: 3, name: 'Rasmus Haahr Sørensen', position: 'Senior Backend Developer', attendanceState: false },
     { id: 4, name: 'Rikke Capion Rasmussen', position: 'Frontend Developer', attendanceState: false },

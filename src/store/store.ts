@@ -8,43 +8,26 @@ interface Employee {
     attendanceState: boolean;
 }
 
-type AttendanceState = { [key: number]: boolean };
-
-interface State{
+interface State {
     employees: Employee[],
-    attendance: AttendanceState,
     toggleAttendance: (id: number) => void,
     isGrouped: boolean,
     toggleGrouping: () => void;
 }
 
-const AttendanceDefault = () => {
-    const useStateDefault: {[key: number]: boolean} = {};
-    employeeData.map((employee) => {
-        useStateDefault[employee.id] = employee.attendanceState;
-    });
-    return useStateDefault;
-}
-
 const useStore = create<State>((set) => ({
     employees: employeeData,
-    attendance: AttendanceDefault(),
     toggleAttendance: (id) => set((state) => {
-        return {
-            ...state, 
-            attendance:{
-                ...state.attendance,
-                [id]: !state.attendance[id]
-            }
-        } 
+        const employees = state.employees.map(employee => 
+            employee.id === id ? {...employee, attendanceState: !employee.attendanceState} : employee
+        );
+        return { ...state, employees };
     }),
     isGrouped: true,
-    toggleGrouping: () => set((state) => {
-        return {
-            ...state, 
-            isGrouped: !state.isGrouped
-        }
-    }),  
-}))
+    toggleGrouping: () => set((state) => ({
+        ...state, 
+        isGrouped: !state.isGrouped
+    })),  
+}));
 
 export default useStore;

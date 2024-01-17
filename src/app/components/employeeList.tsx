@@ -7,7 +7,7 @@ const EmployeeList: React.FC = () => {
 
     const sortedEmployees = (isGrouped 
         ? employees
-            .sort((a, b) => (attendance[a.id] > attendance[b.id] ? -1 : (attendance[a.id] < attendance[b.id] ? 1 : (a.name < b.name ? -1 : 1))))
+            .sort((a, b) => (a.attendanceState > b.attendanceState ? -1 : (a.attendanceState < b.attendanceState ? 1 : (a.name < b.name ? -1 : 1))))
         : employees
             .sort((a, b) => (a.name < b.name ? -1 : 1))
     );
@@ -22,17 +22,17 @@ const EmployeeList: React.FC = () => {
         {
         sortedEmployees.map((employee, index) => (
             <li key={employee.id} 
-                className={`transition-all duration-200 flex items-center p-[15px] ${ attendance[employee.id] ? 'bg-green-100' : 'bg-red-100' } text-black rounded`} 
+                className={`transition-all duration-200 flex items-center p-[15px] ${ employee.attendanceState ? 'bg-green-100' : 'bg-red-100' } text-black rounded`} 
                 style={{ transform: `translateY(${index * 20}px)` }}>
                 <div className="flex-shrink-0">
                     <div className="flex my-auto px-[10px]">
                         {employee.name} - {employee.position}
                     </div>
                 </div>
-                <button className={`ml-4 p-2 ml-auto text-white ${ attendance[employee.id] ? 'bg-green-500' : 'bg-red-500' } text-white rounded`} 
+                <button className={`ml-4 p-2 ml-auto text-white ${ employee.attendanceState ? 'bg-green-500' : 'bg-red-500' } text-white rounded`} 
                         onClick={() => toggleAttendance(employee.id)}>
                     <div className="min-w-[150px] text-center">
-                        {attendance[employee.id] ? 'Attending' : 'Not Attending'}
+                        {employee.attendanceState ? 'Attending' : 'Not Attending'}
                     </div>
                 </button>
             </li>
