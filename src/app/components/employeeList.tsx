@@ -1,18 +1,17 @@
 import useStore from '@/store/store';
 
-// Define the prop types for the EmployeeList component
-
 const EmployeeList: React.FC = () => {
     const {employees,attendance,toggleAttendance,isGrouped} = useStore();
+    const arrayFromEmployees = Array.from(employees.values());
 
     const sortedEmployees = (isGrouped 
-        ? employees
+        ? arrayFromEmployees
             .sort((a, b) => (a.attendanceState > b.attendanceState ? -1 : (a.attendanceState < b.attendanceState ? 1 : (a.name < b.name ? -1 : 1))))
-        : employees
+        : arrayFromEmployees
             .sort((a, b) => (a.name < b.name ? -1 : 1))
     );
 
-    const totalCount = employees.length;
+    const totalCount = arrayFromEmployees.length;
     const ulPaddingBottomValue = (totalCount - 1) * 20 + 50;
 
     return (
