@@ -1,7 +1,7 @@
 import useStore from '@/store/store';
 
 const EmployeeList: React.FC = () => {
-    const {employees,attendance,toggleAttendance,isGrouped} = useStore();
+    const {employees,toggleAttendance,isGrouped} = useStore();
     const arrayFromEmployees = Array.from(employees.values());
 
     const sortedEmployees = (isGrouped 
