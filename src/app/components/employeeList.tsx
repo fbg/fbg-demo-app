@@ -20,7 +20,7 @@ const EmployeeList: React.FC = () => {
             style={{paddingBottom: `${ulPaddingBottomValue}px`}}>
         {
         sortedEmployees.map((employee, index) => (
-            <li key={employee.id} 
+            <li key={employee.GUID} 
                 className={`transition-all duration-200 flex items-center p-[15px] ${ employee.attendanceState ? 'bg-green-100' : 'bg-red-100' } text-black rounded`} 
                 style={{ transform: `translateY(${index * 20}px)` }}>
                 <div className="flex-shrink-0">
@@ -29,7 +29,7 @@ const EmployeeList: React.FC = () => {
                     </div>
                 </div>
                 <button className={`ml-4 p-2 ml-auto text-white ${ employee.attendanceState ? 'bg-green-500' : 'bg-red-500' } text-white rounded`} 
-                        onClick={() => toggleAttendance(employee.id)}>
+                        onClick={() => toggleAttendance(employee.GUID)}>
                     <div className="min-w-[150px] text-center">
                         {employee.attendanceState ? 'Attending' : 'Not Attending'}
                     </div>

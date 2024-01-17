@@ -1,0 +1,9 @@
+[
+    { "GUID": "3d40178a-19fd-43c0-a95a-8a6a61eede6d", "name": "Lars JSON Andersen", "position": "Senior Fullstack Developer", "attendanceState": true },
+    { "GUID": "752a0f20-a667-488c-8d01-fa3b20047837", "name": "Thomas Dietz Christensen", "position": "Senior Systems Developer", "attendanceState": false },
+    { "GUID": "add81f59-a2ba-42e9-8e8e-d001c2dc0718", "name": "Rasmus Haahr Sørensen", "position": "Senior Backend Developer", "attendanceState": false },
+    { "GUID": "7da31b77-7489-486d-ab4e-76c57322fd0c", "name": "Rikke Capion Rasmussen", "position": "Frontend Developer", "attendanceState": false },
+    { "GUID": "d2d4b472-b432-4510-8565-f934a8e65428", "name": "Nicolai Prang Stokbro", "position": "Digital Art Director", "attendanceState": false },
+    { "GUID": "a03df7a0-b03d-4a74-8e57-4f5b74630326", "name": "Anders Stigaard Kjeldsen", "position": "Head of IT & Marketing", "attendanceState": false },
+    { "GUID": "83693646-7eab-4092-b7ec-26b5e7cc1dc6", "name": "Anders Christian Jensen", "position": "Senior Systems Developer", "attendanceState": false }
+]
