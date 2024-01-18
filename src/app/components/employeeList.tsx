@@ -1,8 +1,15 @@
+import React, { useEffect } from 'react';
 import useStore from '@/store/store';
 
 const EmployeeList: React.FC = () => {
-    const {employees,toggleAttendance,isGrouped} = useStore();
-    const arrayFromEmployees = Array.from(employees.values());
+    const {employees,fetchEmployeeData,toggleAttendance,isGrouped} = useStore();
+
+    useEffect(() => {
+        // Fetch employee data and populate the state when the component mounts
+        fetchEmployeeData();
+      }, []);
+      const arrayFromEmployees = Array.from(employees.values());
+
 
     const sortedEmployees = (isGrouped 
         ? arrayFromEmployees
