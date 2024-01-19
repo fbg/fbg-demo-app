@@ -18,41 +18,27 @@ interface State {
   fetchEmployeeData: () => Promise<void>;
 }
 
-const useStore = create<State>((set) => ({
+const useStore = create<State>((set,get) => ({
   employees: new Map(), // Initialize as an empty Map
-  toggleAttendance: (GUID) => set(async (state) => {
-    const employee = state.employees.get(GUID);
+  toggleAttendance: async (GUID: string) => {
+    const employee = get().employees.get(GUID);
     if (employee) {
       // Toggle attendance state
       const updatedEmployee = { ...employee, attendanceState: !employee.attendanceState };
 
-      
-
-      const myObject = {
-        GUID: '83693646-7eab-4092-b7ec-26b5e7cc1dc6',
-        name: 'Anders Christian Jensen',
-        position: 'Senior Systems Developer',
-        attendanceState: true
-      };
-      
-      console.log('src/store/store.ts:');
-      console.log(myObject);
-
-      
-
       // Update the employee data on the server
-      const success = await updateEmployeeByGUID(GUID, myObject);
+      const success = await updateEmployeeByGUID(GUID, updatedEmployee);
 
       if (success) {
         // If the update was successful, update the local state
-        const updatedEmployees = new Map(state.employees);
-        updatedEmployees.set(GUID, updatedEmployee);
-        return { ...state, employees: updatedEmployees };
+        set((state) => {
+          const updatedEmployees = new Map(state.employees);
+          updatedEmployees.set(GUID, updatedEmployee);
+          return { ...state, employees: updatedEmployees };
+        });
       }
     }
-    return state;
-  }),
-    isGrouped: true,
+  },  isGrouped: true,
   toggleGrouping: () => set((state) => ({
     ...state,
     isGrouped: !state.isGrouped,

@@ -57,16 +57,18 @@ export const updateEmployeeByGUID = async (GUID: string, updatedData: Partial<Em
     }
 
     // Parse the existing employee data
-    const existingEmployee: Employee = await response.json();
-
-    // Merge the updated data with the existing data
+    const existingEmployees: Employee[] = await response.json();
+    const existingEmployee = existingEmployees.find(emp => emp.GUID === GUID);
+    if (!existingEmployee) {
+      throw new Error('Employee not found for the provided GUID');
+    }
+    
     const updatedEmployee: Employee = {
       ...existingEmployee,
       ...updatedData,
       GUID, // Ensure the GUID is not changed
     };
-console.log('/src/app/components:(employeeDatahandler.ts:');
-console.log(updatedEmployee);
+    
     // Send the updated employee data to the server
     const updateResponse = await fetch('/api/employeeData', {
       method: 'PUT',
