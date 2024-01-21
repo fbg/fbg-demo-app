@@ -1,9 +1,11 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import '@radix-ui/themes/styles.css';
 import './globals.css'
-import { Theme, ThemePanel } from '@radix-ui/themes';
 
+// Make sure we load radix-ui's styles last,
+// so they are not reset by Tailwind's styles.
+import {Theme} from '@radix-ui/themes';
+import '@radix-ui/themes/styles.css';
 
 const inter = Inter({ subsets: ['latin'] })
 
