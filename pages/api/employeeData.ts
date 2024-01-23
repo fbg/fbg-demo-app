@@ -17,13 +17,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     try {
       const rawData = fs.readFileSync(dataFilePath, 'utf-8');
       const employees = JSON.parse(rawData);
-      const newEmployee = JSON.parse(req.body);
-
-      // Generate a new GUID for the employee
-      const GUID = generateGUID();
-
-      // Add the GUID to the new employee data
-      newEmployee.GUID = GUID;
+      const newEmployee = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
 
       // Add the new employee to the existing employees
       employees.push(newEmployee);
@@ -101,12 +95,3 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     res.status(405).json({ error: 'Method not allowed' });
   }
 };
-
-// Function to generate a GUID
-function generateGUID() {
-  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-    const r = (Math.random() * 16) | 0;
-    const v = c === 'x' ? r : (r & 0x3) | 0x8;
-    return v.toString(16);
-  });
-}

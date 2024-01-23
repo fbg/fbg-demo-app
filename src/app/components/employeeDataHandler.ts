@@ -23,13 +23,13 @@ export const insertEmployee = async (newEmployee: Employee): Promise<boolean> =>
     if (!response.ok) {
       throw new Error('Error inserting employee');
     }
-
     return true;
   } catch (error) {
     console.error('Error inserting employee:', error);
-    return false;
+    return false; // return null in case of an error
   }
 };
+
 
 export const deleteEmployeeByGUID = async (GUID: string): Promise<boolean> => {
   try {

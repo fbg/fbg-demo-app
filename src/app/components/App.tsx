@@ -1,14 +1,17 @@
-import React, {useEffect, useState} from 'react';
 import EmployeeList from './employeeList';
-import GroupingButton from './GroupingButton';
+import BTNgrouping from './BTNgrouping';
+import AddEmployeeDialog from './AddEmployeeDialog';
 
 const App: React.FC = () => {
     return (
         <>
             <div className="flex flex-1 flex-col items-center justify-center">
-                <h1 className="text-4xl font-bold">Medarbejdere</h1>
+                <h1 className="text-4xl font-bold">Deltagere</h1>
                 <EmployeeList/>
-                <GroupingButton/>
+                <div className="flex gap-4"> {/* Add a flex container for buttons */}
+                    <BTNgrouping/>
+                    <AddEmployeeDialog/>
+                </div>
             </div>
         </>
     );
