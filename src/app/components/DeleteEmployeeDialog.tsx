@@ -56,20 +56,22 @@ const DeleteEmployeeDialog: React.FC<DeleteEmployeeDialogProps> = ({ employeeGUI
                     <DialogTitle>
                         <h2 className="text-4xl font-bold mb-[50px] text-center">Slet deltager</h2>
                     </DialogTitle>
-                    <DialogDescription>
-                        Er du sikker på, at du vil slette {employeeName}? Handlingen kan ikke fotrydes.
+                    <DialogDescription
+                    className="text-center"
+                    >
+                        Er du sikker på, at du vil slette {employeeName}?<br />Handlingen kan ikke fotrydes.
                     </DialogDescription>
-                    <div className="flex justify-end space-x-2 mt-4">
+                    <div className="flex justify-center space-x-[20px] mt-[50px]">
                     <DialogClose asChild>
                         <button 
                         ref={closeButtonRef} 
-                        className="px-4 py-2 rounded text-gray-700 bg-gray-200 hover:bg-gray-300">
+                        className="transition duration-200 text-black bg-white border-2 border-black px-5 py-2.5 rounded-full hover:text-white hover:bg-black">
                             Fortryd
                         </button>
                     </DialogClose>
                         <button
                         onClick={handleDelete}
-                        className="px-4 py-2 rounded text-white bg-red-500 hover:bg-red-700"
+                        className="transition duration-200 text-white border-2 px-5 py-2.5 rounded-full bg-red-500 border-red-500 hover:bg-black hover:border-black"
                         >
                             Slet
                         </button>

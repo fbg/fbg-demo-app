@@ -75,7 +75,7 @@ const AddEmployeeDialog: React.FC = () => {
       </DialogTrigger>
       <Portal>
         <DialogOverlay className="fixed inset-0 bg-black/60 z-[1]" />
-        <DialogContent className="fixed bg-white rounded-md top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[2] p-[50px] w-[80%] max-w-[800px]">
+        <DialogContent className="fixed bg-white rounded-md top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/4 z-[2] p-[50px] w-[80%] max-w-[600px]">
           <DialogTitle>
               <h2 className="text-4xl font-bold mb-[50px] text-center">Tilføj deltager</h2>
           </DialogTitle>
@@ -85,7 +85,7 @@ const AddEmployeeDialog: React.FC = () => {
                 <input
                   {...register('name')}
                   ref={nameInputRef}
-                  placeholder="Navn" // Moved label text here
+                  placeholder="Navn"
                   className="border-2 border-gray-300 px-5 py-2.5 rounded-full"
                   value={formData.name}
                   onChange={handleInputChange}
@@ -95,14 +95,14 @@ const AddEmployeeDialog: React.FC = () => {
                 <input
                   {...register('position')}
                   ref={positionInputRef}
-                  placeholder="Stilling" // Moved label text here
+                  placeholder="Titel"
                   className="border-2 border-gray-300 px-5 py-2.5 rounded-full"
                   value={formData.position}
                   onChange={handleInputChange}
                 />
               )}
             </div>
-            <div className="flex justify-between mt-[50px]">
+            <div className="flex justify-center space-x-[20px] mt-[50px]">
               <DialogClose asChild>
                 <button
                   type="button"

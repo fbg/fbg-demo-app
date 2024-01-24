@@ -15,13 +15,13 @@
     "GUID": "d2d4b472-b432-4510-8565-f934a8e65428",
     "name": "Nicolai Prang Stokbro",
     "position": "Digital Art Director",
-    "attendanceState": false
+    "attendanceState": true
   },
   {
     "GUID": "a03df7a0-b03d-4a74-8e57-4f5b74630326",
     "name": "Anders Stigaard Kjeldsen",
     "position": "Head of IT & Marketing",
-    "attendanceState": true
+    "attendanceState": false
   },
   {
     "GUID": "83693646-7eab-4092-b7ec-26b5e7cc1dc6",
