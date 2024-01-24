@@ -1,9 +1,9 @@
 import fs from 'fs';
 import { NextApiRequest, NextApiResponse } from 'next';
 
-const dataFilePath = 'src/app/lars/JSON/employeeData.json';
+const dataFilePath = 'JSON/employeeData.json';
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+const employeeData = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'GET') {
     try {
       const rawData = fs.readFileSync(dataFilePath, 'utf-8');
@@ -95,3 +95,5 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     res.status(405).json({ error: 'Method not allowed' });
   }
 };
+
+export default employeeData;
