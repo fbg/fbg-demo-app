@@ -1,7 +1,7 @@
 import fs from 'fs';
 import { NextApiRequest, NextApiResponse } from 'next';
 
-const dataFilePath = 'JSON/employeeData.json';
+const dataFilePath = 'public/JSON/employeeData.json';
 
 const employeeData = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'GET') {
