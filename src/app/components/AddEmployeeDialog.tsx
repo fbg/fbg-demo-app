@@ -14,7 +14,7 @@ import React, {
 } from 'react';
 import { useForm } from 'react-hook-form';
 import useStore from '@/store/store';
-import generateNewGuid from '@/app/components/newGUID';  // Adjust the import path as necessary
+import generateNewGuid from './newGUID';  // Adjust the import path as necessary
 
 const AddEmployeeDialog: React.FC = () => {
   const [step, setStep] = useState(1); // Step state
