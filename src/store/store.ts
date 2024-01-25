@@ -4,7 +4,7 @@ import {
   insertEmployee,
   deleteEmployeeByGUID,
   updateEmployeeByGUID
-} from '@/app/components/employeeDataHandler';
+} from 'EmployeeDataHandler';
 
 interface Employee {
   GUID: string;
