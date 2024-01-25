@@ -53,8 +53,10 @@ const DeleteEmployeeDialog: React.FC<DeleteEmployeeDialogProps> = ({ employeeGUI
             <Portal>
                 <DialogOverlay className="fixed inset-0 bg-black/60 z-[1]" />
                 <DialogContent className="fixed bg-white p-4 rounded-md top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[2] p-[50px]">
-                    <DialogTitle>
-                        <h2 className="text-4xl font-bold mb-[50px] text-center">Slet deltager</h2>
+                    <DialogTitle
+                    className="text-4xl font-bold mb-[50px] text-center"
+                    >
+                        Slet deltager
                     </DialogTitle>
                     <DialogDescription
                     className="text-center"

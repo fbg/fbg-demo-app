@@ -79,8 +79,10 @@ const AddEmployeeDialog: React.FC = () => {
       <Portal>
         <DialogOverlay className="fixed inset-0 bg-black/60 z-[1]" />
         <DialogContent className="fixed bg-white rounded-md top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/4 z-[2] p-[50px] w-[80%] max-w-[600px]">
-          <DialogTitle>
-              <h2 className="text-4xl font-bold mb-[50px] text-center">Tilføj deltager</h2>
+          <DialogTitle
+          className="text-4xl font-bold mb-[50px] text-center"
+          >
+              Tilføj deltager
           </DialogTitle>
           <form onSubmit={handleSubmit(onSubmit)} className="bg-white">
             <div className="flex flex-col">

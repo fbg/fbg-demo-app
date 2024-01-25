@@ -49,7 +49,7 @@ const useStore = create<State>((set, get) => ({
       const employees = await fetchEmployeeData();
       set((state) => ({
         ...state,
-        employees: new Map(employees.map((employee) => [employee.GUID, employee]))
+        employees: new Map(employees.map((employee: Employee) => [employee.GUID, employee]))
       }));
     } catch (error) {
       console.error('Error fetching employee data:', error);
