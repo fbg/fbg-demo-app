@@ -21,7 +21,7 @@ const generateNewGuid = () => uuidv4();
 
 const AddEmployeeDialog: React.FC = () => {
   const [step, setStep] = useState(1); // Step state
-  const [formData, setFormData] = useState({ name: '', position: '', attendanceState: null}); // Form data state
+  const [formData, setFormData] = useState({ name: '', position: '', attendanceState: false}); // Form data state
   const [dialogOpen, setDialogOpen] = useState(false); // Dialog open state
   const { register, handleSubmit, reset, setValue } = useForm();
   const { addEmployee } = useStore();
@@ -42,6 +42,12 @@ const AddEmployeeDialog: React.FC = () => {
         GUID: generateNewGuid() 
       };
 
+        // Ensure attendanceState is a boolean
+      if (typeof formData.attendanceState !== 'boolean') {
+        console.error('attendanceState must be a boolean');
+        return; // Exit the function or handle the error appropriately
+      }
+
       await addEmployee(newEmployee);
       resetFormAndClose(); // Reset the form fields and close dialog after submission
     }
@@ -49,7 +55,8 @@ const AddEmployeeDialog: React.FC = () => {
 
   const resetFormAndClose = () => {
     reset(); // Reset the form fields using react-hook-form's reset
-    setFormData({ name: '', position: '' }); // Clear the local formData state
+    setFormData({ name: '', position: '', attendanceState: false }); // Clear the local formData state
+    setUserHasInteracted(false);
     setStep(1); // Reset to step 1
     closeDialog(); // Close the dialog
   };
@@ -59,6 +66,8 @@ const AddEmployeeDialog: React.FC = () => {
     setValue(e.target.name, e.target.value); // Update react-hook-form's value
   };
 
+  const [userHasInteracted, setUserHasInteracted] = useState(false);
+
   useEffect(() => {
     // When step is 1, focus on name input field
     if (step === 1 && nameInputRef.current) {
@@ -67,6 +76,8 @@ const AddEmployeeDialog: React.FC = () => {
     // When step is 2, focus on position input field
     else if (step === 2 && positionInputRef.current) {
       positionInputRef.current.focus();
+    } else if (step === 3) {
+      console.log('step 3');
     }
   }, [step]); // Only re-run the effect if step changes
 
@@ -111,15 +122,21 @@ const AddEmployeeDialog: React.FC = () => {
                 <div className="flex justify-center space-x-4">
                   <button
                     type="button"
-                    onClick={() => setFormData({ ...formData, attendanceState: true })}
+                    onClick={() => {
+                      setFormData({ ...formData, attendanceState: true });
+                      setUserHasInteracted(true);
+                    }}
                     className={`px-5 py-2.5 rounded-full ${formData.attendanceState === true ? 'bg-blue-700 text-white' : 'bg-gray-300 text-gray-700'}`}
                   >
                     Attending
                   </button>
                   <button
                     type="button"
-                    onClick={() => setFormData({ ...formData, attendanceState: false })}
-                    className={`px-5 py-2.5 rounded-full ${formData.attendanceState === false ? 'bg-blue-700 text-white' : 'bg-gray-300 text-gray-700'}`}
+                    onClick={() => {
+                      setFormData({ ...formData, attendanceState: false });
+                      setUserHasInteracted(true);
+                    }}
+                    className={`px-5 py-2.5 rounded-full ${formData.attendanceState === false && userHasInteracted? 'bg-blue-700 text-white' : 'bg-gray-300 text-gray-700'}`}
                   >
                     Not Attending
                   </button>
