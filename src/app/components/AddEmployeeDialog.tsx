@@ -21,7 +21,7 @@ const generateNewGuid = () => uuidv4();
 
 const AddEmployeeDialog: React.FC = () => {
   const [step, setStep] = useState(1); // Step state
-  const [formData, setFormData] = useState({ name: '', position: '' }); // Form data state
+  const [formData, setFormData] = useState({ name: '', position: '', attendanceState: null}); // Form data state
   const [dialogOpen, setDialogOpen] = useState(false); // Dialog open state
   const { register, handleSubmit, reset, setValue } = useForm();
   const { addEmployee } = useStore();
@@ -34,10 +34,11 @@ const AddEmployeeDialog: React.FC = () => {
   const onSubmit = async () => {
     if (step === 1) {
       setStep(2); // Move to step 2
+    } else if (step === 2) {
+      setStep(3); // Move to step 3
     } else {
       const newEmployee = { 
         ...formData, 
-        attendanceState: false, 
         GUID: generateNewGuid() 
       };
 
@@ -80,9 +81,9 @@ const AddEmployeeDialog: React.FC = () => {
         <DialogOverlay className="fixed inset-0 bg-black/60 z-[1]" />
         <DialogContent className="fixed bg-white rounded-md top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/4 z-[2] p-[50px] w-[80%] max-w-[600px]">
           <DialogTitle
-          className="text-4xl font-bold mb-[50px] text-center"
+            className="text-4xl font-bold mb-[50px] text-center"
           >
-              Tilføj deltager
+            Tilføj deltager
           </DialogTitle>
           <form onSubmit={handleSubmit(onSubmit)} className="bg-white">
             <div className="flex flex-col">
@@ -106,6 +107,24 @@ const AddEmployeeDialog: React.FC = () => {
                   onChange={handleInputChange}
                 />
               )}
+              {step === 3 && (
+                <div className="flex justify-center space-x-4">
+                  <button
+                    type="button"
+                    onClick={() => setFormData({ ...formData, attendanceState: true })}
+                    className={`px-5 py-2.5 rounded-full ${formData.attendanceState === true ? 'bg-blue-700 text-white' : 'bg-gray-300 text-gray-700'}`}
+                  >
+                    Attending
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setFormData({ ...formData, attendanceState: false })}
+                    className={`px-5 py-2.5 rounded-full ${formData.attendanceState === false ? 'bg-blue-700 text-white' : 'bg-gray-300 text-gray-700'}`}
+                  >
+                    Not Attending
+                  </button>
+                </div>
+              )}
             </div>
             <div className="flex justify-center space-x-[20px] mt-[50px]">
               <DialogClose asChild>
@@ -119,10 +138,10 @@ const AddEmployeeDialog: React.FC = () => {
               </DialogClose>
               <button
                 type="submit"
-                disabled={step === 1 ? formData.name.length < 3 : formData.position.length < 3} // Disable logic based on step
-                className={`transition duration-200 text-white border-2 px-5 py-2.5 rounded-full ${step === 1 && formData.name.length < 3 || step === 2 && formData.position.length < 3 ? 'bg-gray-300 border-gray-300' : 'bg-blue-700 border-blue-700 hover:bg-black hover:border-black'}`}
+                disabled={(step === 1 && formData.name.length < 3) || (step === 2 && formData.position.length < 3) || (step === 3 && formData.attendanceState === null)}
+                className={`transition duration-200 text-white border-2 px-5 py-2.5 rounded-full ${((step === 1 && formData.name.length < 3) || (step === 2 && formData.position.length < 3) || (step === 3 && formData.attendanceState === null)) ? 'bg-gray-300 border-gray-300' : 'bg-blue-700 border-blue-700 hover:bg-black hover:border-black'}`}
               >
-                {step === 1 ? 'Næste' : 'Gem og luk'}
+                {step === 1 ? 'Næste trin' : step === 2 ? 'Næste trin' : 'Gem og luk'}
               </button>
             </div>
           </form>

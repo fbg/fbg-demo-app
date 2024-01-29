@@ -70,7 +70,7 @@ const EmployeeList: React.FC = () => {
                         <button className={`ml-4 p-2 ml-auto text-white rounded transition duration-200 ${ employee.attendanceState ? 'bg-green-500 hover:bg-green-700' : 'bg-red-500 hover:bg-red-700' }`} 
                                 onClick={() => handleToggleAttendance(employee.GUID)}>
                             <div className="min-w-[150px] text-center">
-                                {employee.attendanceState ? 'Attending' : 'Not Attending'}
+                                {employee.attendanceState ? 'Deltager' : 'Deltager ikke'}
                             </div>
                         </button>
                     </div>

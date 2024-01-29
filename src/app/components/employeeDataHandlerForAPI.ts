@@ -23,6 +23,7 @@ export const insertEmployee = async (newEmployee: Employee): Promise<boolean> =>
     if (!response.ok) {
       throw new Error('Error inserting employee');
     }
+    console.log(JSON.stringify(newEmployee));
     return true;
   } catch (error) {
     console.error('Error inserting employee:', error);
