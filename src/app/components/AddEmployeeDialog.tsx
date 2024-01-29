@@ -92,63 +92,91 @@ const AddEmployeeDialog: React.FC = () => {
         <DialogOverlay className="fixed inset-0 bg-black/60 z-[1]" />
         <DialogContent className="fixed bg-white rounded-md top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/4 z-[2] p-[50px] w-[80%] max-w-[600px]">
           <DialogTitle
-            className="text-4xl font-bold mb-[50px] text-center"
+            className="text-4xl font-bold mb-[25px] text-center"
           >
             Tilføj deltager
           </DialogTitle>
           <form onSubmit={handleSubmit(onSubmit)} className="bg-white">
-            <div className="flex flex-col">
               {step === 1 && (
-                <input
-                  {...register('name')}
-                  ref={nameInputRef}
-                  placeholder="Navn"
-                  className="border-2 border-gray-300 px-5 py-2.5 rounded-full"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                />
-              )}
-              {step === 2 && (
-                <input
-                  {...register('position')}
-                  ref={positionInputRef}
-                  placeholder="Titel"
-                  className="border-2 border-gray-300 px-5 py-2.5 rounded-full"
-                  value={formData.position}
-                  onChange={handleInputChange}
-                />
-              )}
-              {step === 3 && (
-                <div className="flex justify-center space-x-4">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setFormData({ ...formData, attendanceState: true });
-                      setUserHasInteracted(true);
-                    }}
-                    className={`px-5 py-2.5 rounded-full ${formData.attendanceState === true ? 'bg-blue-700 text-white' : 'bg-gray-300 text-gray-700'}`}
+                <div
+                  className="flex flex-col"
+                >
+                  <h3
+                  className="text-2xl font-bold mb-[50px] text-center"
                   >
-                    Attending
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setFormData({ ...formData, attendanceState: false });
-                      setUserHasInteracted(true);
-                    }}
-                    className={`px-5 py-2.5 rounded-full ${formData.attendanceState === false && userHasInteracted? 'bg-blue-700 text-white' : 'bg-gray-300 text-gray-700'}`}
-                  >
-                    Not Attending
-                  </button>
+                    Trin 1: Angiv navn
+                  </h3>
+                  <input
+                    {...register('name')}
+                    ref={nameInputRef}
+                    placeholder="Navn"
+                    className="border-2 border-gray-300 px-5 py-2.5 rounded-full"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                  />
                 </div>
               )}
-            </div>
+              {step === 2 && (
+                <div
+                  className="flex flex-col"
+                >
+                  <h3
+                  className="text-2xl font-bold mb-[50px] text-center"
+                  >
+                    Trin 2: Angiv titel
+                  </h3>
+                  <input
+                    {...register('position')}
+                    ref={positionInputRef}
+                    placeholder="Titel"
+                    className="border-2 border-gray-300 px-5 py-2.5 rounded-full"
+                    value={formData.position}
+                    onChange={handleInputChange}
+                  />
+                </div>
+
+              )}
+              {step === 3 && (
+                <div
+                  className="flex flex-col"
+                >
+                  <h3
+                    className="text-2xl font-bold mb-[50px] text-center"
+                  >
+                      Trin 3: Angiv status for deltagelse
+                  </h3>
+                  <div className="flex justify-center space-x-[20px]">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setFormData({ ...formData, attendanceState: true });
+                        setUserHasInteracted(true);
+                      }}
+                      disabled={formData.attendanceState === true && userHasInteracted}
+                      className={`min-w-[150px] p-2 text-white rounded transition duration-200 ${formData.attendanceState === true ? 'bg-green-500 disabled' : 'bg-green-300 hover:bg-green-700'}`}
+                    >
+                      Deltager
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setFormData({ ...formData, attendanceState: false });
+                        setUserHasInteracted(true);
+                      }}
+                      disabled={formData.attendanceState === false && userHasInteracted}
+                      className={`min-w-[150px] p-2 text-white rounded transition duration-200 ${formData.attendanceState === false && userHasInteracted? 'bg-red-500 disabled' : 'bg-red-300 hover:bg-red-700'}`}
+                    >
+                      Deltager ikke
+                    </button>
+                  </div>
+                </div>
+              )}
             <div className="flex justify-center space-x-[20px] mt-[50px]">
               <DialogClose asChild>
                 <button
                   type="button"
                   onClick={resetFormAndClose}
-                  className="transition duration-200 text-black bg-white border-2 border-black px-5 py-2.5 rounded-full hover:text-white hover:bg-black"
+                  className="min-w-[130px] transition duration-200 text-black bg-white border-2 border-black px-5 py-2.5 rounded-full hover:text-white hover:bg-black"
                 >
                   Fortryd
                 </button>
@@ -156,7 +184,7 @@ const AddEmployeeDialog: React.FC = () => {
               <button
                 type="submit"
                 disabled={(step === 1 && formData.name.length < 3) || (step === 2 && formData.position.length < 3) || (step === 3 && formData.attendanceState === null)}
-                className={`transition duration-200 text-white border-2 px-5 py-2.5 rounded-full ${((step === 1 && formData.name.length < 3) || (step === 2 && formData.position.length < 3) || (step === 3 && formData.attendanceState === null)) ? 'bg-gray-300 border-gray-300' : 'bg-blue-700 border-blue-700 hover:bg-black hover:border-black'}`}
+                className={`min-w-[130px] transition duration-200 text-white border-2 px-5 py-2.5 rounded-full ${((step === 1 && formData.name.length < 3) || (step === 2 && formData.position.length < 3) || (step === 3 && !userHasInteracted)) ? 'bg-gray-300 border-gray-300' : 'bg-blue-700 border-blue-700 hover:bg-black hover:border-black'}`}
               >
                 {step === 1 ? 'Næste trin' : step === 2 ? 'Næste trin' : 'Gem og luk'}
               </button>
