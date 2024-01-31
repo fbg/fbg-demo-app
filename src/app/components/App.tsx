@@ -1,6 +1,7 @@
 import EmployeeList from './employeeList';
 import BTNgrouping from './BTNgrouping';
-import AddEmployeeDialog from './AddEmployeeDialog';
+import AddEmployeeFramerMotion from './AddEmployeeFramerMotion';
+// import AddEmployeeDialog from './AddEmployeeDialog';
 
 const App: React.FC = () => {
     return (
@@ -10,7 +11,8 @@ const App: React.FC = () => {
                 <EmployeeList/>
                 <div className="flex gap-4"> {/* Add a flex container for buttons */}
                     <BTNgrouping/>
-                    <AddEmployeeDialog/>
+                    <AddEmployeeFramerMotion/>
+                    {/* <AddEmployeeDialog/> */}
                 </div>
             </div>
         </>
