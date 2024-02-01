@@ -6,7 +6,7 @@ const BTNgrouping: React.FC = () => {
 
   return (
     <button 
-    className="transition duration-200 text-white bg-blue-700 hover:bg-black border-2 border-blue-700 hover:border-black hover:text-white px-5 py-2.5 rounded-full"
+    className="transition duration-200 text-white bg-blue-700 hover:bg-black border-2 border-blue-700 drop-shadow-lg hover:border-black hover:text-white px-5 py-2.5 rounded-full"
     onClick={toggleGrouping}
     >
       {isGrouped ? 'Sorter alfabetisk' : 'Sorter efter status'}

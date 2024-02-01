@@ -21,11 +21,12 @@ const AddEmployeeFramerStepOne: React.FC<{ goToNextStep: () => void }> = ({ goTo
 
   return (
     <div className="flex flex-col">
+      <p className="text-3xl font-bold mb-[25px] text-center">Trin 1: Angiv deltagerens navn</p>
       <input
         {...register('name')}
         onKeyDown={handleKeyDown}
         placeholder="Navn"
-        className="border-2 border-gray-300 p-2 rounded-md"
+        className="transition duration-200 bg-white border-2 px-[20px] md:px-[30px] py-2.5 rounded-full drop-shadow-lg"
       />
     </div>
   );

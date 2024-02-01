@@ -24,6 +24,7 @@ const AddEmployeeFramerStepThree: React.FC<AddEmployeeFramerStepThreeProps> = ({
 
   return (
     <div className="flex flex-col p-4">
+      <p className="text-3xl font-bold mb-[25px] text-center">Trin 3: Angiv status for deltagelse</p>
       <div className="flex justify-center space-x-4">
         <button
           type="button"

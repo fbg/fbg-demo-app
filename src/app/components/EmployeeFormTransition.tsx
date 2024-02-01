@@ -16,7 +16,7 @@ const EmployeeFormTransition: React.FC<{ currentStep: number, setAnimationComple
         className="absolute inset-0 w-screen flex"
       >
         <div className="w-full flex flex-1 flex-col justify-center items-center relative">
-          <div className="my-auto w-full px-[20px]">
+          <div className="my-auto w-full px-[20px] md:px-[50px] lg:px-[150px] max-w-[1200px]">
             {children}
           </div>
         </div>

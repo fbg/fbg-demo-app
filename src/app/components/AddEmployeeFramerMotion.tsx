@@ -100,9 +100,9 @@ const AddEmployeeFramerMotion: React.FC = () => {
         <FormProvider {...formMethods}>
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="flex flex-1 flex-col py-[50px]"
+            className="flex flex-1 flex-col py-[50px] md:py-[100px] lg:py-[150px]"
           >
-            <div className="text-4xl font-bold mb-[25px] text-center">
+            <div className="text-4xl font-bold mb-[25px] text-center drop-shadow-lg">
               Tilføj deltager
             </div>
             <div className="flex items-center justify-center h-full overflow-auto overflow-x-hidden py-[50px] relative">
@@ -110,11 +110,11 @@ const AddEmployeeFramerMotion: React.FC = () => {
               {renderStep()}
             </EmployeeFormTransition>
             </div>
-            <div className="flex justify-between">
+            <div className="flex justify-between px-[20px] md:px-[100px] lg:px-[150px]">
               <button
                 type="button"
                 onClick={resetFormAndClose}
-                className="min-w-[130px] transition duration-200 text-black bg-white border-2 border-black px-5 py-2.5 rounded-full hover:text-white hover:bg-black"
+                className="min-w-[130px] transition duration-200 text-black bg-white border-2 border-black px-5 py-2.5 rounded-full  drop-shadow-lg hover:text-white hover:bg-black"
               >
                 Fortryd
               </button>
@@ -123,7 +123,7 @@ const AddEmployeeFramerMotion: React.FC = () => {
                   type="button"
                   onClick={() => changeStep(currentStep + 1)}
                   disabled={currentStep === 1 ? name.length < 3 : position.length < 3} // Disable if conditions are not met
-                  className={`min-w-[130px] transition duration-200 text-white border-2 px-5 py-2.5 rounded-full ${currentStep === 1 && name.length < 3 || currentStep === 2 && position.length < 3 ? 'bg-gray-300 border-gray-300' : 'bg-blue-700 border-blue-700 hover:bg-black hover:border-black'}`}
+                  className={`min-w-[130px] transition duration-200 text-white border-2 px-5 py-2.5 rounded-full drop-shadow-lg ${currentStep === 1 && name.length < 3 || currentStep === 2 && position.length < 3 ? 'bg-gray-300 border-gray-300' : 'bg-blue-700 border-blue-700 hover:bg-black hover:border-black'}`}
                 >
                   Næste trin
                 </button>
@@ -132,7 +132,7 @@ const AddEmployeeFramerMotion: React.FC = () => {
                 <button
                   type="submit"
                   disabled={getValues("attendanceState") === null || !userHasInteracted} // Disable if attendanceState is not set or user hasn't interacted
-                  className={`min-w-[130px] transition duration-200 text-white border-2 px-5 py-2.5 rounded-full ${getValues("attendanceState") === null || !userHasInteracted ? 'bg-gray-300 border-gray-300' : 'bg-blue-700 border-blue-700 hover:bg-black hover:border-black'}`}
+                  className={`min-w-[130px] transition duration-200 text-white border-2 px-5 py-2.5 rounded-full drop-shadow-lg ${getValues("attendanceState") === null || !userHasInteracted ? 'bg-gray-300 border-gray-300' : 'bg-blue-700 border-blue-700 hover:bg-black hover:border-black'}`}
                 >
                   Gem og luk
                 </button>
