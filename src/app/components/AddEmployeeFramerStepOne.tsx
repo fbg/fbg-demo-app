@@ -25,7 +25,7 @@ const AddEmployeeFramerStepOne: React.FC<{ goToNextStep: () => void }> = ({ goTo
         {...register('name')}
         onKeyDown={handleKeyDown}
         placeholder="Navn"
-        className="transition duration-200 border-2 px-5 py-2.5 rounded-full"
+        className="border-2 border-gray-300 p-2 rounded-md"
       />
     </div>
   );

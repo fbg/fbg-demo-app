@@ -9,6 +9,8 @@ import FullScreenDialog from './FullScreenDialog';
 import AddEmployeeFramerStepOne from './AddEmployeeFramerStepOne';
 import AddEmployeeFramerStepTwo from './AddEmployeeFramerStepTwo';
 import AddEmployeeFramerStepThree from './AddEmployeeFramerStepThree';
+import EmployeeFormTransition from './EmployeeFormTransition';
+
 
 const generateNewGuid = () => uuidv4();
 
@@ -98,36 +100,17 @@ const AddEmployeeFramerMotion: React.FC = () => {
         <FormProvider {...formMethods}>
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="flex flex-1 flex-col py-[50px] md:py-[150px]"
+            className="flex flex-1 flex-col py-[50px]"
           >
             <div className="text-4xl font-bold mb-[25px] text-center">
               Tilføj deltager
             </div>
             <div className="flex items-center justify-center h-full overflow-auto overflow-x-hidden py-[50px] relative">
-              <AnimatePresence custom={currentStep}>
-                <motion.div
-                  key={currentStep}
-                  initial={currentStep === 1 ? { x: '0%' } : { x: '100%' }}
-                  animate={{ x: '0%' }}
-                  exit={{ x: '-100%' }}
-                  transition={{ duration: .5 }} // Adjusted duration for smoother transition
-                  onAnimationComplete={() => setAnimationCompleted(true)} // Set the flag when animation completes
-                  className="absolute inset-0 w-screen flex"
-                >
-                  <div className="w-full flex flex-1 flex-col justify-center items-center relative">
-                    <div className="my-auto w-full px-[20px]">
-                      <h3 className="text-2xl font-bold mb-4 text-center">
-                        {stepTitles[currentStep - 1]} {/* Render the title based on currentStep */}
-                      </h3>
-                      <div className="w-full max-w-[850px] mx-auto">
-                        {renderStep()}
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              </AnimatePresence>
+            <EmployeeFormTransition currentStep={currentStep} setAnimationCompleted={setAnimationCompleted}>
+              {renderStep()}
+            </EmployeeFormTransition>
             </div>
-            <div className="flex justify-between px-[20px] md:px-[50px] lg:px-[150px]">
+            <div className="flex justify-between">
               <button
                 type="button"
                 onClick={resetFormAndClose}
