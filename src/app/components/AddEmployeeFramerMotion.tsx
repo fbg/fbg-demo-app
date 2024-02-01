@@ -98,7 +98,7 @@ const AddEmployeeFramerMotion: React.FC = () => {
         <FormProvider {...formMethods}>
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="flex flex-1 flex-col py-[50px]"
+            className="flex flex-1 flex-col py-[50px] md:py-[150px]"
           >
             <div className="text-4xl font-bold mb-[25px] text-center">
               Tilføj deltager
@@ -115,7 +115,7 @@ const AddEmployeeFramerMotion: React.FC = () => {
                   className="absolute inset-0 w-screen flex"
                 >
                   <div className="w-full flex flex-1 flex-col justify-center items-center relative">
-                    <div className="my-auto w-full">
+                    <div className="my-auto w-full px-[20px]">
                       <h3 className="text-2xl font-bold mb-4 text-center">
                         {stepTitles[currentStep - 1]} {/* Render the title based on currentStep */}
                       </h3>
@@ -127,7 +127,7 @@ const AddEmployeeFramerMotion: React.FC = () => {
                 </motion.div>
               </AnimatePresence>
             </div>
-            <div className="flex justify-between">
+            <div className="flex justify-between px-[20px] md:px-[50px] lg:px-[150px]">
               <button
                 type="button"
                 onClick={resetFormAndClose}

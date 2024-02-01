@@ -6,7 +6,7 @@ import AddEmployeeFramerMotion from './AddEmployeeFramerMotion';
 const App: React.FC = () => {
     return (
         <>
-            <div className="flex flex-1 flex-col items-center justify-center">
+            <div className="flex flex-1 flex-col items-center justify-center max-w-full overflow-x-auto">
                 <h1 className="text-4xl font-bold">Deltagere</h1>
                 <EmployeeList/>
                 <div className="flex gap-4"> {/* Add a flex container for buttons */}
