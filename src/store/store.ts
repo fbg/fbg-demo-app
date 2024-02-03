@@ -1,5 +1,10 @@
 import { create } from 'zustand';
-import { fetchEmployeeData,insertEmployee,deleteEmployeeByGUID,updateEmployeeByGUID } from '@/app/components/employeeDataHandler';
+import {
+  fetchEmployeeData,
+  insertEmployee,
+  deleteEmployeeByGUID,
+  updateEmployeeByGUID
+} from 'EmployeeDataHandler';
 
 interface Employee {
   GUID: string;
@@ -9,7 +14,7 @@ interface Employee {
 }
 
 interface State {
-  employees: Map<string, Employee>; // Change employees to a Map
+  employees: Map<string, Employee>;
   toggleAttendance: (GUID: string) => void;
   isGrouped: boolean;
   toggleGrouping: () => void;
@@ -18,27 +23,23 @@ interface State {
   fetchEmployeeData: () => Promise<void>;
 }
 
-const useStore = create<State>((set,get) => ({
-  employees: new Map(), // Initialize as an empty Map
+const useStore = create<State>((set, get) => ({
+  employees: new Map(),
   toggleAttendance: async (GUID: string) => {
     const employee = get().employees.get(GUID);
     if (employee) {
-      // Toggle attendance state
       const updatedEmployee = { ...employee, attendanceState: !employee.attendanceState };
-
-      // Update the employee data on the server
       const success = await updateEmployeeByGUID(GUID, updatedEmployee);
-
       if (success) {
-        // If the update was successful, update the local state
         set((state) => {
-          const updatedEmployees = new Map(state.employees);
-          updatedEmployees.set(GUID, updatedEmployee);
-          return { ...state, employees: updatedEmployees };
+          const employees = new Map(state.employees);
+          employees.set(GUID, updatedEmployee);
+          return { ...state, employees };
         });
       }
     }
-  },  isGrouped: true,
+  },
+  isGrouped: true,
   toggleGrouping: () => set((state) => ({
     ...state,
     isGrouped: !state.isGrouped,
@@ -46,32 +47,40 @@ const useStore = create<State>((set,get) => ({
   fetchEmployeeData: async () => {
     try {
       const employees = await fetchEmployeeData();
-      set((state) => ({ ...state, employees: new Map(employees.map((employee) => [employee.GUID, employee])) }));
+      set((state) => ({
+        ...state,
+        employees: new Map(employees.map((employee: Employee) => [employee.GUID, employee]))
+      }));
     } catch (error) {
       console.error('Error fetching employee data:', error);
-      // Handle the error here or return an empty Map if needed
     }
   },
   addEmployee: async (employee) => {
     const success = await insertEmployee(employee);
     if (success) {
-      set((state) => ({
-        ...state,
-        employees: new Map([...state.employees, [employee.GUID, employee]]),
-      }));
+      console.log(`Employee added: ${employee.GUID}`);
+      set((state) => {
+        const employees = new Map(state.employees);
+        employees.set(employee.GUID, employee);
+        return { ...state, employees };
+      });
+    } else {
+      console.error('Failed to add employee');
     }
   },
   removeEmployee: async (GUID) => {
     const success = await deleteEmployeeByGUID(GUID);
     if (success) {
-      const updatedEmployees = new Map(state.employees);
-      updatedEmployees.delete(GUID);
-      set((state) => ({
-        ...state,
-        employees: updatedEmployees,
-      }));
+      console.log(`Employee with GUID: ${GUID} removed`);
+      set((state) => {
+        const employees = new Map(state.employees);
+        employees.delete(GUID);
+        return { ...state, employees };
+      });
+    } else {
+      console.error('Failed to delete employee');
     }
-  },
+  }
 }));
 
 export default useStore;
