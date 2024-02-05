@@ -8,7 +8,6 @@ import React, {
 
 import useStore from '@/store/store';
 import DeleteEmployeeDialog from '@/app/components/DeleteEmployeeDialog';
-
 import {Switch} from "@radix-ui/themes";
 
 const EmployeeList: React.FC = () => {
@@ -58,15 +57,15 @@ const EmployeeList: React.FC = () => {
 
     return (
         <div className="flex justify-center items-center">
-            <ul className="flex flex-col bg-white border-2 border-black rounded-lg p-[50px] m-12 content-between gap-4">
+            <ul className="flex flex-col bg-white border-0 md:border-2 border-black md:rounded-lg p-0 md:p-[50px] m-0 content-between gap-[8px] md:gap-[20px]">
             {
             sortedEmployees.map((employee, index) => (
                 <li 
                     key={employee.GUID} 
                     className="flex items-center justify-between"
                 >
-                    <div className={`transition-all duration-200 flex items-center justify-between p-[15px] flex-grow mr-[30px] text-black rounded ${ employee.attendanceState ? 'bg-green-100' : 'bg-red-100' }`} >
-                        <div className="flex-shrink-0">
+                    <div className={`transition-all duration-200 flex items-center justify-between p-[15px] flex-grow text-black md:rounded ${ employee.attendanceState ? 'bg-green-100' : 'bg-red-100' }`} >
+                        <div className="flex flex-grow">
                             <div className="flex my-auto px-[10px]">
                                 {employee.name} - {employee.position}
                             </div>
@@ -75,7 +74,9 @@ const EmployeeList: React.FC = () => {
                             <Switch
                                 checked={employee.attendanceState}
                                 onCheckedChange={() => handleToggleAttendance(employee.GUID)}
-                                className={`switch ${employee.attendanceState ? 'bg-green-500' : 'bg-red-500'}`}
+                                color="green"
+                                className="switch"
+                                size="3"
                                 id={`switch-${employee.GUID}`}
                             />
                             <DeleteEmployeeDialog

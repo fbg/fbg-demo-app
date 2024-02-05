@@ -2,47 +2,41 @@
 
 import React, { useState, useEffect } from 'react';
 import { useFormContext } from 'react-hook-form';
+import {Switch} from "@radix-ui/themes";
 
-interface AddEmployeeFramerStepThreeProps {
-  setUserHasInteracted: (interacted: boolean) => void;
-}
+const AddEmployeeFramerStepThree: React.FC = () => {
+  const { setValue, watch } = useFormContext();
+  const attendanceState = watch('attendanceState');
+  const name = watch('name');
+  const position = watch('position');
 
-const AddEmployeeFramerStepThree: React.FC<AddEmployeeFramerStepThreeProps> = ({ setUserHasInteracted }) => {
-  const [attendanceState, setAttendanceState] = useState<boolean | null>(null);
-  const { setValue } = useFormContext();
-
-  useEffect(() => {
-    if (attendanceState !== null) {
-      setValue('attendanceState', attendanceState);
-    }
-  }, [attendanceState, setValue]);
-
-  const handleAttendanceChange = (state: boolean) => {
-    setAttendanceState(state);
-    setUserHasInteracted(true);
+  const handleToggleAttendance = (checked: boolean) => {
+    setValue('attendanceState', checked);
   };
 
   return (
     <div className="flex flex-col p-4">
-      <p className="text-3xl font-bold mb-[25px] text-center">Trin 3: Angiv status for deltagelse</p>
-      <div className="flex justify-center space-x-4">
-        <button
-          type="button"
-          onClick={() => handleAttendanceChange(true)}
-          className={`min-w-[150px] p-2 text-white rounded transition duration-200 ${attendanceState === true ? 'bg-green-500 disabled' : 'bg-green-300 hover:bg-green-700'}`}
-        >
-          Deltager
-        </button>
-        <button
-          type="button"
-          onClick={() => handleAttendanceChange(false)}
-          className={`min-w-[150px] p-2 text-white rounded transition duration-200 ${attendanceState === false ? 'bg-red-500 disabled' : 'bg-red-300 hover:bg-red-700'}`}
-        >
-          Deltager ikke
-        </button>
+      <p className="text-3xl font-bold mb-[25px] text-center">Trin 3: Kontrol og status for deltagelse</p>
+      <div className={`transition-all duration-200 flex items-center justify-between p-[15px] flex-grow text-black md:rounded ${ attendanceState ? 'bg-green-100' : 'bg-red-100' }`}>
+        <div className="flex flex-grow">
+          <div className="flex my-auto px-[10px]">
+            {name} - {position}
+          </div>
+        </div>
+        <div className="flex items-center">
+          <Switch
+              checked={attendanceState}
+              onCheckedChange={handleToggleAttendance}
+              color="green"
+              className="switch"
+              size="3"
+          />
+
+        </div>
       </div>
     </div>
   );
 };
+
 
 export default AddEmployeeFramerStepThree;

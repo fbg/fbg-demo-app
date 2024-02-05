@@ -9,19 +9,19 @@
     "GUID": "add81f59-a2ba-42e9-8e8e-d001c2dc0718",
     "name": "Rasmus Haahr Sørensen",
     "position": "Senior Backend Developer",
-    "attendanceState": true
+    "attendanceState": false
   },
   {
     "GUID": "d2d4b472-b432-4510-8565-f934a8e65428",
     "name": "Nicolai Prang Stokbro",
     "position": "Digital Art Director",
-    "attendanceState": false
+    "attendanceState": true
   },
   {
     "GUID": "a03df7a0-b03d-4a74-8e57-4f5b74630326",
     "name": "Anders Stigaard Kjeldsen",
     "position": "Head of IT & Marketing",
-    "attendanceState": false
+    "attendanceState": true
   },
   {
     "GUID": "83693646-7eab-4092-b7ec-26b5e7cc1dc6",

@@ -8,9 +8,9 @@ const Lars: React.FC = () => {
 
     return (
 
-        <div className="flex w-full flex-col flex-1 min-h-screen bg-slate-200">
+        <div className="flex w-full flex-col flex-1 min-h-screen">
             
-            <div className="grid grid-cols-2">
+            <div className="grid grid-cols-2 bg-slate-200">
                 <div className="p-5">
                     <Link className="border-gray-500 border p-2" href='/'>Tilbage</Link>
                 </div>
@@ -18,7 +18,7 @@ const Lars: React.FC = () => {
             </div>
 
             <div className="flex w-full flex-1 flex-col items-center">
-                <div className="flex flex-1 w-full flex-col bg-slate-400 items-center">
+                <div className="flex flex-1 w-full flex-col items-center">
                     {<App/>}
                 </div>
             </div>
