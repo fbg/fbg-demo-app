@@ -1,17 +1,29 @@
-// components/EmployeeFormTransition.tsx
-
 import React from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 
-const EmployeeFormTransition: React.FC<{ currentStep: number, setAnimationCompleted: (completed: boolean) => void, children: React.ReactNode }> = ({ currentStep, setAnimationCompleted, children }) => {
+const EmployeeFormTransition: React.FC<{ 
+  currentStep: number, 
+  setAnimationCompleted: (completed: boolean) => void, 
+  children: React.ReactNode, 
+  isNavigatingForward: boolean 
+}> = ({ currentStep, setAnimationCompleted, children, isNavigatingForward }) => {
+  // Use the `isNavigatingForward` flag to determine the direction of the animation
+  const variants = {
+    initial: (isForward: boolean) => ({ x: isForward ? '100%' : '-100%' }),
+    animate: { x: '0%' },
+    exit: (isForward: boolean) => ({ x: isForward ? '-100%' : '100%' }),
+  };
+
   return (
-    <AnimatePresence custom={currentStep}>
+    <AnimatePresence custom={isNavigatingForward} initial={false}>
       <motion.div
         key={currentStep}
-        initial={currentStep === 1 ? { x: '0%' } : { x: '100%' }}
-        animate={{ x: '0%' }}
-        exit={{ x: '-100%' }}
-        transition={{ duration: 0.5 }}
+        custom={isNavigatingForward}
+        variants={variants}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+        transition={{ type: "tween", duration: 0.5 }}
         onAnimationComplete={() => setAnimationCompleted(true)}
         className="absolute inset-0 w-screen flex"
       >

@@ -31,13 +31,15 @@ const FullScreenDialog: React.FC<FullScreenDialogProps> = ({ isOpen, onClose, ch
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
+          transition={{ duration: 0.1 }}
           className="fixed inset-0 z-50 flex justify-center items-center bg-black/60"
           onClick={onClose}
         >
           <motion.div
-            initial={{ scale: 0.9 }}
+            initial={{ scale: 0.95 }}
             animate={{ scale: 1 }}
-            exit={{ scale: 0.9 }}
+            exit={{ scale: 0.95 }}
+            transition={{ duration: 0.1 }}
             className="w-full flex flex-col h-screen overflow-auto bg-white"
             onClick={(e) => e.stopPropagation()} // Prevent click from closing the dialog
           >
