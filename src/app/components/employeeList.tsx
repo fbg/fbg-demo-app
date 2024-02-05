@@ -9,6 +9,8 @@ import React, {
 import useStore from '@/store/store';
 import DeleteEmployeeDialog from '@/app/components/DeleteEmployeeDialog';
 
+import {Switch} from "@radix-ui/themes";
+
 const EmployeeList: React.FC = () => {
     const {
         employees,
@@ -59,28 +61,30 @@ const EmployeeList: React.FC = () => {
             <ul className="flex flex-col bg-white border-2 border-black rounded-lg p-[50px] m-12 content-between gap-4">
             {
             sortedEmployees.map((employee, index) => (
-                <li key={employee.GUID} 
-                className="flex items-center justify-between"
+                <li 
+                    key={employee.GUID} 
+                    className="flex items-center justify-between"
                 >
-                    <div
-                    className={`transition-all duration-200 flex items-center p-[15px] flex-grow mr-[30px] text-black rounded ${ employee.attendanceState ? 'bg-green-100' : 'bg-red-100' }`} >
+                    <div className={`transition-all duration-200 flex items-center justify-between p-[15px] flex-grow mr-[30px] text-black rounded ${ employee.attendanceState ? 'bg-green-100' : 'bg-red-100' }`} >
                         <div className="flex-shrink-0">
                             <div className="flex my-auto px-[10px]">
                                 {employee.name} - {employee.position}
                             </div>
                         </div>
-                        <button className={`ml-4 p-2 ml-auto text-white rounded transition duration-200 ${ employee.attendanceState ? 'bg-green-500 hover:bg-green-700' : 'bg-red-500 hover:bg-red-700' }`} 
-                                onClick={() => handleToggleAttendance(employee.GUID)}>
-                            <div className="min-w-[150px] text-center">
-                                {employee.attendanceState ? 'Deltager' : 'Deltager ikke'}
-                            </div>
-                        </button>
+                        <div className="flex items-center">
+                            <Switch
+                                checked={employee.attendanceState}
+                                onCheckedChange={() => handleToggleAttendance(employee.GUID)}
+                                className={`switch ${employee.attendanceState ? 'bg-green-500' : 'bg-red-500'}`}
+                                id={`switch-${employee.GUID}`}
+                            />
+                            <DeleteEmployeeDialog
+                                employeeGUID={employee.GUID}
+                                employeeName={employee.name}
+                                onConfirm={() => handleRemoveEmployee(employee.GUID)}
+                            />
+                        </div>
                     </div>
-                    <DeleteEmployeeDialog
-                        employeeGUID={employee.GUID}
-                        employeeName={employee.name}
-                        onConfirm={() => handleRemoveEmployee(employee.GUID)}
-                    />
                 </li>
             ))}
             </ul>

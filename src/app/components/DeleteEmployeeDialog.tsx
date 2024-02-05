@@ -30,7 +30,7 @@ const DeleteEmployeeDialog: React.FC<DeleteEmployeeDialogProps> = ({ employeeGUI
         <Dialog>
             <DialogTrigger asChild>
                 <button 
-                className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700 transition duration-200"
+                className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700 transition duration-200 ml-[20px]"
                 aria-label="Delete"
                 >
                     <svg 
