@@ -74,8 +74,8 @@ const EmployeeList: React.FC = () => {
                             <Switch
                                 checked={employee.attendanceState}
                                 onCheckedChange={() => handleToggleAttendance(employee.GUID)}
-                                color="green"
                                 className="switch"
+                                color="green"
                                 size="3"
                                 id={`switch-${employee.GUID}`}
                             />

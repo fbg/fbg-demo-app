@@ -22,7 +22,20 @@ const config: Config = {
         anders: '#00f000',
         rasmus: '#000f00',
         kjeldsen: '#0000f0',
-        lars: '#00000f'
+        lars: '#00000f',
+        portalcolor: {
+          DEFAULT: 'var(--portalcolor)',
+          50: 'var(--portalcolor-50)',
+          100: 'var(--portalcolor-100)',
+          200: 'var(--portalcolor-200)',
+          300: 'var(--portalcolor-300)',
+          400: 'var(--portalcolor-400)',
+          500: 'var(--portalcolor-500)',
+          600: 'var(--portalcolor-600)',
+          700: 'var(--portalcolor-700)',
+          800: 'var(--portalcolor-800)',
+          900: 'var(--portalcolor-900)',
+        },
       }
     }
   },

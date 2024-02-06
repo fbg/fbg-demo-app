@@ -6,6 +6,17 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --portalcolor: #198ab0;
+  --portalcolor-50: #198ab005;
+  --portalcolor-100: #198ab010;
+  --portalcolor-200: #198ab020;
+  --portalcolor-300: #198ab030;
+  --portalcolor-400: #198ab040;
+  --portalcolor-500: #198ab050;
+  --portalcolor-600: #198ab060;
+  --portalcolor-700: #198ab070;
+  --portalcolor-800: #198ab080;
+  --portalcolor-900: #198ab090;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -25,4 +36,3 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
-

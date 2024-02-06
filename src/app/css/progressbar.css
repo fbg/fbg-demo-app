@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .progressBarStep::before {
+    content: "";
+    @apply absolute w-[12px] h-[12px] rounded-full ;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 1;
+    border: solid 1px var(--portalcolor);
+    background: var(--portalcolor);
+    transition: background-color .2s;
+  }
+
+  .progressBarStep {
+    transform: translate(-50%, -7px);
+  }
+
+  .progressBarStep.progressBarStep-faded::before {
+    background-color: #ffffff;
+  }
+}

@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import '@radix-ui/themes/styles.css';
-import './globals.css'
+import '@/app/css/globals.css'
+import '@/app/css/radixExtend.css'
 import { Theme, ThemePanel } from '@radix-ui/themes';
 
 

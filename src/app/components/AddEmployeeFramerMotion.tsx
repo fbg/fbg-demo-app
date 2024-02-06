@@ -1,7 +1,6 @@
 // components/AddEmployeeFramerMotion.tsx
 
 import React, { useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
 import { useForm, FormProvider } from 'react-hook-form';
 import useStore from '@/store/store';
 import { v4 as uuidv4 } from 'uuid';
@@ -10,6 +9,8 @@ import AddEmployeeFramerStepOne from './AddEmployeeFramerStepOne';
 import AddEmployeeFramerStepTwo from './AddEmployeeFramerStepTwo';
 import AddEmployeeFramerStepThree from './AddEmployeeFramerStepThree';
 import EmployeeFormTransition from './EmployeeFormTransition';
+import AddEmployeeProgressBar from './AddEmployeeProgressBar';
+import "@/app/css/progressbar.css";
 
 
 const generateNewGuid = () => uuidv4();
@@ -119,6 +120,7 @@ const AddEmployeeFramerMotion: React.FC = () => {
             <div className="text-4xl font-bold mb-[25px] text-center">
               Tilføj deltager
             </div>
+            <AddEmployeeProgressBar step={currentStep} />
             <div className="flex items-center justify-center h-full overflow-auto overflow-x-hidden py-[50px] relative">
               <EmployeeFormTransition currentStep={currentStep} setAnimationCompleted={setAnimationCompleted} isNavigatingForward={isNavigatingForward}>
                 {renderStep()}
@@ -139,7 +141,7 @@ const AddEmployeeFramerMotion: React.FC = () => {
                   type="button"
                   onClick={() => changeStep(currentStep + 1)}
                   disabled={currentStep === 1 ? name.length < 3 : position.length < 3} // Disable if conditions are not met
-                  className={`justify-self-end min-w-[130px] transition duration-200 text-white border-2 px-5 py-2.5 rounded-full ${currentStep === 1 && name.length < 3 || currentStep === 2 && position.length < 3 ? 'bg-gray-300 border-gray-300' : 'drop-shadow-lg bg-blue-700 border-blue-700 hover:bg-black hover:border-black'}`}
+                  className={`justify-self-end min-w-[130px] transition duration-200 text-white border-2 px-5 py-2.5 rounded-full ${currentStep === 1 && name.length < 3 || currentStep === 2 && position.length < 3 ? 'bg-gray-300 border-gray-300' : 'drop-shadow-lg bg-portalcolor border-portalcolor hover:bg-black hover:border-black'}`}
                 >
                   Næste trin
                 </button>
@@ -147,7 +149,7 @@ const AddEmployeeFramerMotion: React.FC = () => {
               {currentStep === 3 && (
                 <button
                   type="submit"
-                  className="min-w-[130px] transition duration-200 text-white border-2 px-5 py-2.5 rounded-full drop-shadow-lg bg-blue-700 border-blue-700 hover:bg-black hover:border-black"
+                  className="min-w-[130px] transition duration-200 text-white border-2 px-5 py-2.5 rounded-full drop-shadow-lg bg-portalcolor border-portalcolor hover:bg-black hover:border-black"
                 >
                   Gem og luk
                 </button>
