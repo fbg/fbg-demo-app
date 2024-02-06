@@ -16,7 +16,7 @@ const AddEmployeeFramerStepThree: React.FC = () => {
 
   return (
     <div className="flex flex-col p-4">
-      <p className="text-3xl font-bold mb-[25px] text-center">Trin 3: Kontrol og status for deltagelse</p>
+      <p className="text-3xl font-bold mb-[25px] text-center">Check info og sæt status for deltagelse</p>
       <div className={`transition-all duration-200 flex items-center justify-between p-[15px] flex-grow text-black md:rounded ${ attendanceState ? 'bg-green-100' : 'bg-red-100' }`}>
         <div className="flex flex-grow">
           <div className="flex my-auto px-[10px]">

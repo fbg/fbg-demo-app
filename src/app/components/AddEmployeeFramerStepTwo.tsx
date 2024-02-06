@@ -23,7 +23,7 @@ const AddEmployeeFramerStepTwo: React.FC<{ animationCompleted: boolean, goToNext
 
   return (
     <div className="flex flex-col">
-      <p className="text-3xl font-bold mb-[25px] text-center">Trin 2: Angiv deltagerens titel</p>
+      <p className="text-3xl font-bold mb-[25px] text-center">Angiv deltagerens titel</p>
       <input
         {...register('position')}
         onKeyDown={handleKeyDown}

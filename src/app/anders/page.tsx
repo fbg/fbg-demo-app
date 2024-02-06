@@ -1,7 +1,7 @@
 "use client";
 import * as Dialog from '@radix-ui/react-dialog';
 import { Cross2Icon } from '@radix-ui/react-icons';
-import '@/app/radix.css';
+import '@/app/css/radix.css';
 import '@radix-ui/themes/styles.css';
 
 

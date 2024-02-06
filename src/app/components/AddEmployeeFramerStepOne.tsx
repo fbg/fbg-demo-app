@@ -21,7 +21,7 @@ const AddEmployeeFramerStepOne: React.FC<{ goToNextStep: () => void }> = ({ goTo
 
   return (
     <div className="flex flex-col">
-      <p className="text-3xl font-bold mb-[25px] text-center">Trin 1: Angiv deltagerens navn</p>
+      <p className="text-3xl font-bold mb-[25px] text-center">Angiv deltagerens navn</p>
       <input
         {...register('name')}
         onKeyDown={handleKeyDown}
