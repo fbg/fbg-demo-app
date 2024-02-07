@@ -55,7 +55,7 @@ const AddEmployeeFramerMotion: React.FC = () => {
         GUID: generateNewGuid(),
         name: formData.name,
         position: formData.position,
-        attendanceState: formData.attendanceState,
+        attendanceState: formData.attendanceState ?? false, //fallback value, because the radix UI switch does not send a value unless it's been toggled at least 1 time
     };
     await addEmployee(newEmployee); // make sure addEmployee function accepts an Employee type
       resetFormAndClose();

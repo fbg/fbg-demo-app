@@ -6,7 +6,7 @@ import {Switch} from "@radix-ui/themes";
 
 const AddEmployeeFramerStepThree: React.FC = () => {
   const { setValue, watch } = useFormContext();
-  const attendanceState = watch('attendanceState');
+  const attendanceState = watch('attendanceState', false);
   const name = watch('name');
   const position = watch('position');
 
