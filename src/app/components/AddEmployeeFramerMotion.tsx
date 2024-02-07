@@ -1,6 +1,6 @@
 // components/AddEmployeeFramerMotion.tsx
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import useStore from '@/store/store';
 import { v4 as uuidv4 } from 'uuid';
@@ -26,7 +26,10 @@ const AddEmployeeFramerMotion: React.FC = () => {
   const [animationCompleted, setAnimationCompleted] = useState(false);
   const position = watch("position", "");
   const openDialog = () => setDialogOpen(true);
-  const closeDialog = () => setDialogOpen(false);
+  const closeDialog = useCallback(() => {
+    setDialogOpen(false);
+  }, []); // `closeDialog` has no dependencies, so the dependency array is empty
+ 
   const [isNavigatingForward, setIsNavigatingForward] = useState(true);
 
 
@@ -37,13 +40,36 @@ const AddEmployeeFramerMotion: React.FC = () => {
     GUID: string;
   }
 
-  const changeStep = (newStep: number) => {
+  const changeStep = useCallback((newStep: number) => {
     setIsNavigatingForward(newStep >= currentStep);
     setAnimationCompleted(false); // Reset animation completion before changing steps
     setCurrentStep(newStep);
-  };
+  }, [currentStep]); // Include all state variables used inside `changeStep` as dependencies
   
-  const onSubmit = async () => {
+  const resetFormAndClose = useCallback(() => {
+    reset();
+    setUserHasInteracted(false);
+    setCurrentStep(1);
+    closeDialog();
+    setIsNavigatingForward(true);
+  }, [reset, closeDialog]); // Add dependencies used inside `resetFormAndClose`
+  
+  const goToNextStep = useCallback(() => {
+    if ((currentStep === 1 && name.length >= 3) || (currentStep === 2 && position.length >= 3)) {
+      changeStep(currentStep + 1);
+    }
+  }, [currentStep, name.length, position.length, changeStep]); // Add all dependencies used inside goToNextStep
+
+  const goToPreviousStep = () => {
+    if (currentStep > 1) {
+      // Explicitly set navigating forward to false when going to a previous step
+      setIsNavigatingForward(false);
+      setCurrentStep(currentStep - 1);
+    }
+  };
+
+  
+  const onSubmit = useCallback(async () => {
     if (currentStep === 1) {
       changeStep(2);
     } else if (currentStep === 2) {
@@ -62,42 +88,43 @@ const AddEmployeeFramerMotion: React.FC = () => {
     } else {
       console.log('step definition is missing');
     }
-  };
-
-  const resetFormAndClose = () => {
-    reset();
-    setUserHasInteracted(false);
-    setCurrentStep(1);
-    closeDialog();
-    setIsNavigatingForward(true);
-  };
-
-  const goToNextStep = () => {
-    if ((currentStep === 1 && name.length >= 3) || (currentStep === 2 && position.length >= 3)) {
-      changeStep(currentStep + 1);
-    }
-  };
-
-  const goToPreviousStep = () => {
-    if (currentStep > 1) {
-      // Explicitly set navigating forward to false when going to a previous step
-      setIsNavigatingForward(false);
-      setCurrentStep(currentStep - 1);
-    }
-  };
-    
+  }, [currentStep, getValues, addEmployee, resetFormAndClose, changeStep]); // Include `changeStep` if used within `onSubmit`
+  
   const renderStep = () => {
     switch (currentStep) {
       case 1:
-        return <AddEmployeeFramerStepOne goToNextStep={goToNextStep}/>; //Only goToNextStep, because its assigned to tab inside AddEmployeeFramerStepOne
+        return <AddEmployeeFramerStepOne />;
       case 2:
-        return <AddEmployeeFramerStepTwo goToNextStep={goToNextStep} animationCompleted={animationCompleted} />; //Only goToNextStep, because its assigned to tab inside AddEmployeeFramerStepTwo
+        return <AddEmployeeFramerStepTwo animationCompleted={animationCompleted} />;
       case 3:
         return <AddEmployeeFramerStepThree />;
       default:
         return null;
     }
   };
+
+  // Check for keydown on enter and tab. 
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if(e.key === 'Tab' || e.key === 'Enter') {
+        e.preventDefault(); // Prevent the default tabbing behavior
+        if (currentStep === 1 || (currentStep === 2 && animationCompleted)) {
+          goToNextStep();
+        } 
+        else if (e.key === 'Enter' && currentStep === 3 && animationCompleted) {
+          handleSubmit(onSubmit)(); // Programmatically trigger form submission
+        }
+      }
+    };
+    
+    document.addEventListener('keydown', handleKeyDown);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [handleSubmit, onSubmit, currentStep, animationCompleted, goToNextStep]); // Dependencies for useEffect
+
 
   return (
     <div>

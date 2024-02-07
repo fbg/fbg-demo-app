@@ -1,12 +1,11 @@
 // components/AddEmployeeFramerStepThree.tsx
 
-import React, { useState, useEffect } from 'react';
 import { useFormContext } from 'react-hook-form';
 import {Switch} from "@radix-ui/themes";
 
 const AddEmployeeFramerStepThree: React.FC = () => {
   const { setValue, watch } = useFormContext();
-  const attendanceState = watch('attendanceState', false);
+  const attendanceState = watch('attendanceState');
   const name = watch('name');
   const position = watch('position');
 

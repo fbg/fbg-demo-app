@@ -23,7 +23,7 @@ const EmployeeFormTransition: React.FC<{
         initial="initial"
         animate="animate"
         exit="exit"
-        transition={{ type: "tween", duration: 0.5 }}
+        transition={{ type: "tween", duration: .5 }}
         onAnimationComplete={() => setAnimationCompleted(true)}
         className="absolute inset-0 w-screen flex"
       >
